@@ -1,0 +1,8 @@
+prefix=/home/phong/catkin_ws/devel
+
+Name: movement
+Description: Description of movement
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/phong/catkin_ws/devel/lib 
+Requires: 

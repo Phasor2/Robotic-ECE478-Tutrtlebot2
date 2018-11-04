@@ -1,0 +1,2 @@
+my_dynamixel_tutorial
+-DCATKIN_DEVEL_PREFIX=/home/phong/catkin_arm/devel -DCMAKE_INSTALL_PREFIX=/home/phong/catkin_arm/install -G Unix Makefiles

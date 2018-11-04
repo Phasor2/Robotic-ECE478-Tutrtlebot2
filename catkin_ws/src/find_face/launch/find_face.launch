@@ -1,0 +1,9 @@
+<launch>
+	<include file="/opt/ros/kinetic/share/kobuki_node/launch/minimal.launch"/>
+	<include file="/opt/ros/kinetic/share/kobuki_keyop/launch/safe_keyop.launch"/>
+	<include file="/home/phong/catkin_ws/src/ros_astra_launch/launch/astra.launch"/>
+	<node name="find_face" pkg="find_face" type="find_face.py" output="screen"/>
+	<node name="face_rec" pkg="face_rec" type="face_rec.py" />
+
+
+</launch>

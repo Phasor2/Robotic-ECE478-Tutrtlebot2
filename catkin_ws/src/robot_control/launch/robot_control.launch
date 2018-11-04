@@ -1,0 +1,8 @@
+<launch>
+	<include file="/opt/ros/kinetic/share/kobuki_node/launch/minimal.launch"/>
+	<include file="/opt/ros/kinetic/share/kobuki_keyop/launch/safe_keyop.launch"/>
+	<node name="robot_control" pkg="robot_control" type="robot_control.py" output="screen"/>
+
+
+</launch>
+

@@ -1,0 +1,8 @@
+prefix=/home/phong/catkin_ws/devel
+
+Name: user_input
+Description: Description of user_input
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/phong/catkin_ws/devel/lib 
+Requires: 

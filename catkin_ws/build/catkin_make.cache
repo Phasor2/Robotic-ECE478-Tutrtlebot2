@@ -1,0 +1,2 @@
+face_rec:find_face:go:my_dynamixel_tutorial:robot_control:ros_astra_camera:ros_astra_launch:test:user_input
+-DCATKIN_DEVEL_PREFIX=/home/phong/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/phong/catkin_ws/install -G Unix Makefiles
