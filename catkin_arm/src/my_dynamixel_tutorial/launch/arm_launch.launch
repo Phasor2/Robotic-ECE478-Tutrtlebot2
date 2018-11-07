@@ -1,0 +1,5 @@
+<launch>
+	<include file="/home/phong/catkin_arm/src/my_dynamixel_tutorial/launch/controller_manager.launch"/>
+	<include file="/home/phong/catkin_arm/src/my_dynamixel_tutorial/launch/start_tilt_controller.launch"/>
+
+</launch>

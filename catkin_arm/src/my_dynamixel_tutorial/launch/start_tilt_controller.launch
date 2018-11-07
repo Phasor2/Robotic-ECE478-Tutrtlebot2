@@ -4,6 +4,15 @@
     <node name="tilt_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
           args="--manager=dxl_manager
                 --port pan_tilt_port
-                tilt_controller"
+                tilt_controller1
+		tilt_controller2
+		tilt_controller3
+		tilt_controller4
+		tilt_controller5
+		tilt_controller6
+		tilt_controller7
+		tilt_controller8
+		tilt_controller9
+		tilt_controller10"
           output="screen"/>
 </launch>
