@@ -37,6 +37,13 @@ Hardware:
 1. Turtlebot base.
 2. Ten Dynamixel Servos for upper body.
 
+# Other Notes:
+Demo links:
+https://www.youtube.com/watch?v=whqVVA40tWM&index=2&t=0s&list=PLxiXRkFUM1W4GCAMjMz7DGA7DtuK4A1gv
+https://www.youtube.com/watch?v=ntbudF2Yg6I&index=3&t=0s&list=PLxiXRkFUM1W4GCAMjMz7DGA7DtuK4A1gv
+https://www.youtube.com/watch?v=ZsFY2O-RB7w&index=4&t=0s&list=PLxiXRkFUM1W4GCAMjMz7DGA7DtuK4A1gv
+https://www.youtube.com/watch?v=YpEsGMDDN2I&index=7&list=PLxiXRkFUM1W4GCAMjMz7DGA7DtuK4A1gv&t=0s
+
 # Project Team:
 1. Phong Nguyen (OpenCV, Servo Control)
 2. Ali Boshehri (ROS, Servo Control)
