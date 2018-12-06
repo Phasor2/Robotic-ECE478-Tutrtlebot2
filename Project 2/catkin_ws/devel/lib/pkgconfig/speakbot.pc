@@ -1,0 +1,8 @@
+prefix=/home/myturtlebot/catkin_ws/devel
+
+Name: speakbot
+Description: Description of speakbot
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/myturtlebot/catkin_ws/devel/lib 
+Requires: 

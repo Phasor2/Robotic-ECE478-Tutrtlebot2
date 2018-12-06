@@ -1,0 +1,130 @@
+tilt_controller1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 1
+        init: 512
+        min: 409
+        max: 818
+
+tilt_controller2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 2
+        init: 512
+        min: 341
+        max: 648
+
+tilt_controller3:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 3
+        init: 512
+        min: 307
+        max: 716
+
+tilt_controller4:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 4
+        init: 512
+        min: 341
+        max: 648
+
+tilt_controller5:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 5
+        init: 512
+        min: 205
+        max: 614
+
+tilt_controller6:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 6
+        init: 512
+        min: 409
+        max: 682
+
+tilt_controller7:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 7
+        init: 512
+        min: 614
+        max: 1023
+
+tilt_controller8:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 8
+        init: 512
+        min: 409
+        max: 682
+
+tilt_controller9:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 9
+        init: 512
+        min: 358
+        max: 665
+
+tilt_controller10:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: claw_1f
+    joint_speed: 1.0
+    motor:
+        id: 10
+        init: 512
+        min: 375
+        max: 614
+

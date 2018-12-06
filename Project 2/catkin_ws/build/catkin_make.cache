@@ -1,0 +1,2 @@
+einstein:my_dynamixel_tutorial:resbot:speakbot
+-DCATKIN_DEVEL_PREFIX=/home/myturtlebot/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/myturtlebot/catkin_ws/install -G Unix Makefiles

@@ -1,0 +1,5 @@
+<launch>
+	<include file="/home/myturtlebot/catkin_ws/src/my_dynamixel_tutorial/launch/controller_manager.launch"/>
+	<include file="/home/myturtlebot/catkin_ws/src/my_dynamixel_tutorial/launch/start_tilt_controller.launch"/>
+	<node name="arm_move" pkg="my_dynamixel_tutorial" type="arm_move.py"/>
+</launch>

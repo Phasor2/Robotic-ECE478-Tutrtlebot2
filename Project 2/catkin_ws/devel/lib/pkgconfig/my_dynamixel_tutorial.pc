@@ -1,0 +1,8 @@
+prefix=/home/myturtlebot/catkin_ws/devel
+
+Name: my_dynamixel_tutorial
+Description: Description of my_dynamixel_tutorial
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/myturtlebot/catkin_ws/devel/lib 
+Requires: 

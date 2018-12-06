@@ -1,0 +1,4 @@
+<launch>
+	<node name="speakingbot" pkg="speakbot" type="polly.py"/>
+	<node name="talkingbot" pkg="resbot" type="dialogflow1.py" output="screen"/>
+</launch>
