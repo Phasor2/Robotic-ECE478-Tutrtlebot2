@@ -18,10 +18,9 @@ Portland State University
 
 # Project 2 requirements:
 
-1.Implement speech recognition into the robot by using Google Dialogflow.
+1. Implement speech recognition into the robot by using Google Dialogflow.
 
 2. Implement speech synthesis into your robot by using Amazon Polly
-
 
 # Project Status 1 and 2:
 
