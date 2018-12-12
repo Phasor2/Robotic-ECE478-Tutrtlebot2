@@ -10,7 +10,7 @@ from std_msgs.msg import String,Int32
 arm = rospy.Publisher('/arm_act', Int32, queue_size=1)
 
 
-polly_client = boto3.Session(aws_access_key_id='AKIAJBRX2ONENDBZCDOA',aws_secret_access_key='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',region_name='us-west-2').client('polly')
+polly_client = boto3.Session(aws_access_key_id='###################',aws_secret_access_key='###################################',region_name='us-west-2').client('polly')
 
 def callback(data):	
 	response = polly_client.synthesize_speech(VoiceId='Matthew',OutputFormat='mp3',Text = data.data)
