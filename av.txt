@@ -1,0 +1,93 @@
+Function Get-FileName($initialDirectory){
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+    
+    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.initialDirectory = $Global:initialDirectory
+    $OpenFileDialog.filter = "TXT (*.txt)| *.txt"
+    $OpenFileDialog.ShowDialog() | Out-Null
+    $OpenFileDialog.filename
+} #End Get-FileName Function
+
+# load required modules
+Import-Module ActiveDirectory
+Import-module ($Env:SMS_ADMIN_UI_PATH.Substring(0,$Env:SMS_ADMIN_UI_PATH.Length-5) + '\ConfigurationManager.psd1')
+
+# get list of PC's
+$namesFile = Get-FileName
+$names = Get-Content $namesFile
+
+# log script start
+$time = Get-Date
+$ScriptOutput = "$initialDirectory" + $time.Month + $time.Day + $time.Year + "-" + $time.Hour + $time.Minute + "-" + "Script-Output.txt"
+Write-Output "Initiating Computer Object Clean-Up Script on behalf of $($env:UserName)" | Out-File $ScriptOutput
+Get-Date | Out-File $ScriptOutput -Append
+
+# log PC's to be processed
+Write-Host "Computer objects to be processed in this batch:" -ForegroundColor Yellow
+Write-Host $names -ForegroundColor Yellow
+Write-Output "Computer objects to be processed in this batch:" | Out-File $ScriptOutput -Append
+$names | Out-File $ScriptOutput -Append
+
+# main processing
+Write-Host "Testing and removing from Active Directory (AD) and SCCM now." -Foregroundcolor Yellow
+Write-Output "Testing and removing from Active Directory (AD) and SCCM now." | Out-File $ScriptOutput -Append
+
+# removal script
+$scriptBlock = {
+    Param($name)
+    Remove-ADComputer -Identity $name -Server aze-dc-001.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server aze-dc-002.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server azw-dc-018.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server azw-dc-019.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server orl-dc-001.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server orl-dc-002.hrc-cc.com -Confirm:$false
+    Remove-ADComputer -Identity $name -Server orl-dc-017.hrc-cc.com -Confirm:$false
+    $SCCMObj = Get-WmiObject -Query "SELECT * from SMS_R_SYSTEM WHERE Name='$name'" -ComputerName 'AZW-SCSS-001' -Namespace 'ROOT\SMS\site_HDY'
+    $SCCMObj.psbase.delete()
+}
+
+# run spawn removal script job for each PC selected
+$names | ForEach-Object {Start-Job -ScriptBlock $scriptBlock -ArgumentList $_ | Out-Null}
+Get-Job | Wait-Job | Receive-Job
+
+# verify PC's removed from all DC's
+ForEach($name in $names){
+
+# verify AD object removal
+    $test = Get-ADComputer -Identity $name -Server azw-dc-019.hrc-cc.com
+    If($test){
+        Write-Host "Failed to remove computer object $name from AD." -ForegroundColor Red
+        Write-Output "Failed to remove computer object $name from AD." | Out-File $ScriptOutput -Append
+        $test = $null
+        Start-Sleep -Seconds 1
+    }
+    Else{
+        Write-Host "Success: Computer object $name successfully deleted from AD." -ForegroundColor Green
+        Write-Output "Success: Computer object $name successfully deleted from AD." | Out-File $ScriptOutput -Append
+        $test = $null
+        Start-Sleep -Seconds 1
+    }
+
+# verify SCCM object removal
+    $test2 = Get-WmiObject -Query "SELECT * from SMS_R_SYSTEM WHERE Name='$name'" -ComputerName 'AZW-SCSS-001' -Namespace 'ROOT\SMS\site_HDY'
+    If($test2){
+        Write-Host "Failed to remove computer object $name from SCCM." -ForegroundColor Red
+        Write-Output "Failed to remove computer object $name from SCCM." | Out-File $ScriptOutput -Append
+        $test2 = $null
+        Start-Sleep -Seconds 1
+    }
+    Else{
+        Write-Host "Success: Computer object $name successfully deleted from SCCM." -ForegroundColor Green
+        Write-Output "Success: Computer object $name successfully deleted from SCCM." | Out-File $ScriptOutput -Append
+        $test2 = $null
+        Start-Sleep -Seconds 1
+    }
+}
+
+# log script end
+Write-Output "End of script." | Out-File $ScriptOutput -Append
+Get-Date | Out-File $ScriptOutput -Append
+
+# send notification email
+$mailBody = (Get-Content $ScriptOutput) -join '<BR>'
+Send-MailMessage -Attachments "$ScriptOutput" -SmtpServer mailx.hrc-cc.com -From "htgbuilds@holidaytouch.com" -To "richard.crews@holidaytouch.com" -Subject "Redeploy Clean-Up Report" -BodyAsHtml "$mailBody" -Cc "configs@htginc.com","htg_ar@htginc.com"
